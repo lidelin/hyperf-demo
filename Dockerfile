@@ -50,7 +50,8 @@ COPY . /opt/www
 
 WORKDIR /opt/www
 
-RUN composer install --no-dev \
+RUN composer config -g repos.packagist composer https://php.cnpkg.org \
+    && composer install --no-dev \
     && composer dump-autoload -o \
     && php /opt/www/bin/hyperf.php di:init-proxy
 
